@@ -1,0 +1,83 @@
+<section class="position-relative py-4 py-xl-5">
+  <div class="container position-relative">
+    <div class="row d-flex justify-content-center">
+      <div class="col-lg-5">
+        <div class="card">
+          <div class="card-body text-center p-sm-5">
+            <h2 class="font-weight-bold mb-3">Create New Section</h2>
+            <form
+              method="post"
+              id="add-faculty"
+              #regForm="ngForm"
+              (ngSubmit)="submitSection()"
+            >
+              <div class="mb-3">
+                <select
+                  class="form-select"
+                  [(ngModel)]="form.semester_id"
+                  name="semester_id"
+                  (ngModelChange)="semesterChange(this.form.semester_id)"
+                  required
+                >
+                  <option [ngValue]="null" selected disabled>
+                    Select Semester
+                  </option>
+                  <option
+                    *ngFor="let semester of semesters"
+                    [value]="semester.id"
+                  >
+                    {{ semester.semester_name }}
+                  </option>
+                </select>
+              </div>
+              <div *ngIf="error.semester_id" class="alert mt-0 p-0 text-start">
+                <div>{{ error.semester_id }}</div>
+              </div>
+              <div class="mb-3">
+                <input
+                  [(ngModel)]="form.section_name"
+                  class="form-control"
+                  type="text"
+                  name="section_name"
+                  placeholder="Subject Name"
+                  (ngModelChange)="sectionChange(this.form.section_name)"
+                  required
+                />
+              </div>
+              <div *ngIf="error.section_name" class="alert mt-0 p-0 text-start">
+                <div>{{ error.section_name }}</div>
+              </div>
+              <div>
+                <button
+                  class="btn btn-primary d-block w-100"
+                  name="insert"
+                  type="submit"
+                >
+                  Create
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-7">
+        <div class="card shadow">
+          <div class="card-header py-2">
+            <p class="lead m-0"><strong>Sections</strong></p>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive table mb-0 pt-3 pr-2">
+              <table
+                id="myTable"
+                class="table table-striped table-bordered table-sm row-border hover"
+              >
+                <thead></thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

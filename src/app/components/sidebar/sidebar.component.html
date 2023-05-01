@@ -1,0 +1,154 @@
+<nav
+  class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0"
+  style="background: var(--bs-orange)"
+>
+  <div class="container-fluid d-flex flex-column p-0">
+    <a
+      class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0"
+      href="#"
+    >
+      <div class="sidebar-brand-icon">
+        <img src="assets/img/CICT50x50.png" />
+      </div>
+      <div class="sidebar-brand-text mx-3"><span>ADMIN</span></div>
+    </a>
+    <hr class="sidebar-divider my-0" />
+    <ul class="navbar-nav text-light" id="accordionSidebar">
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          [routerLink]="['/admin/dashboard']"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          ><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a
+        >
+      </li>
+      <li class="nav-item">
+        <div>
+          <a
+            class="btn btn-link nav-link"
+            data-bs-toggle="collapse"
+            aria-expanded="false"
+            aria-controls="collapse-1"
+            href="#collapse-1"
+            role="button"
+            ><i class="fas fa-users-cog"></i>&nbsp;<span>Account&nbsp;</span></a
+          >
+          <div class="collapse" id="collapse-1">
+            <div class="bg-white border rounded py-2 collapse-inner">
+              <h6 class="collapse-header">Account Settings:</h6>
+              <a
+                class="collapse-item"
+                [routerLink]="['/admin/account-faculty']"
+                routerLinkActive="active"
+                >Faculty</a
+              >
+              <a
+                class="collapse-item"
+                [routerLink]="['/admin/account-attendance-checker']"
+                routerLinkActive="active"
+                >Attendance Checker</a
+              >
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          [routerLink]="['/admin/attendance-record']"
+          routerLinkActive="active"
+          ><i class="far fa-list-alt"></i><span>Attendance Record</span></a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          [routerLink]="['/admin/faculty-schedule']"
+          routerLinkActive="active"
+          ><i class="far fa-calendar-alt"></i
+          ><span>Input Faculty Schedule<br /></span
+        ></a>
+      </li>
+      <li class="nav-item">
+        <div>
+          <a
+            class="btn btn-link nav-link"
+            data-bs-toggle="collapse"
+            aria-expanded="false"
+            aria-controls="collapse-4"
+            href="#collapse-4"
+            role="button"
+            ><i class="fas fa-key"></i>&nbsp;<span>Key</span></a
+          >
+          <div class="collapse" id="collapse-4">
+            <div class="bg-white border rounded py-2 collapse-inner">
+              <h6 class="collapse-header">Key Settings:</h6>
+              <a
+                class="collapse-item"
+                [routerLink]="['/admin/key-inventory']"
+                routerLinkActive="active"
+                >Inventory</a
+              >
+              <a
+                class="collapse-item"
+                [routerLink]="['/admin/key-history']"
+                routerLinkActive="active"
+                >History</a
+              >
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item">
+        <div>
+          <a
+            class="btn btn-link nav-link"
+            data-bs-toggle="collapse"
+            aria-expanded="false"
+            aria-controls="collapse-5"
+            href="#collapse-5"
+            role="button"
+            ><i class="fa fa-cogs"></i>&nbsp;<span>Management</span></a
+          >
+          <div class="collapse" id="collapse-5">
+            <div class="bg-white border rounded py-2 collapse-inner">
+              <h6 class="collapse-header">Management Settings:</h6>
+              <a
+                class="collapse-item"
+                [routerLink]="['/admin/semester-management']"
+                routerLinkActive="active"
+                >Semester</a
+              >
+              <a
+                class="collapse-item"
+                [routerLink]="['/admin/subject-management']"
+                routerLinkActive="active"
+                >Subject</a
+              >
+              <a
+                class="collapse-item"
+                [routerLink]="['/admin/room-management']"
+                routerLinkActive="active"
+                >Room</a
+              >
+              <a
+                class="collapse-item"
+                [routerLink]="['/admin/section-management']"
+                routerLinkActive="active"
+                >Section</a
+              >
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <div class="text-center d-none d-md-inline">
+      <button
+        class="btn rounded-circle border-0"
+        id="sidebarToggle"
+        type="button"
+      ></button>
+    </div>
+  </div>
+</nav>

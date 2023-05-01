@@ -1,0 +1,37 @@
+<nav
+  class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top"
+>
+  <div class="container-fluid">
+    <ul class="navbar-nav flex-nowrap ms-auto">
+      <div class="d-none d-sm-block topbar-divider"></div>
+      <li class="nav-item dropdown no-arrow">
+        <div class="nav-item dropdown no-arrow">
+          <a
+            class="dropdown-toggle nav-link"
+            aria-expanded="false"
+            data-bs-toggle="dropdown"
+            href="#"
+            ><span class="d-none d-lg-inline me-2 text-gray-600 small">{{
+              name
+            }}</span>
+            <img
+              class="border rounded-circle img-profile"
+              src="assets/img/avatars/avatar1.jpeg"
+              style="object-fit: cover; aspect-ratio: 1/1"
+              *ngIf="!url"
+            />
+            <img
+              class="border rounded-circle img-profile"
+              src="http://127.0.0.1:8000/storage/{{ url }}"
+              style="object-fit: cover; aspect-ratio: 1/1"
+              *ngIf="url"
+            />
+          </a>
+          <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
+            <router-outlet name="header-dropdown"></router-outlet>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
