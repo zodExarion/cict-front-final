@@ -172,17 +172,43 @@ export class AccountAttendanceCheckerComponent {
       return this.error;
     }
 
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
+    if (!this.passwordValidator()) {
+      this.error.password =
+        'password must contain one(1) Uppercase letter, one(1) lowercase letter and one(1) number. It must be atleast 8 characters.';
+    }
+
+    this.checkUsernameUnique(this.form.username).subscribe((response) => {
+      if (response.error) {
+        this.error.username = 'Username is taken.';
+      }
     });
 
-    return this.http
-      .post<any>('http://127.0.0.1:8000/api/users', this.form, { headers })
-      .subscribe((data) => {
-        if (data?.message) {
-          this.reloadPage();
-        }
+    this.checkEmailUnique(this.form.email).subscribe((response) => {
+      if (response.error) {
+        this.error.email = 'Email is taken.';
+      }
+    });
+
+    if (
+      this.error.email == 'Email is taken.' ||
+      this.error.username == 'Username is taken.' ||
+      this.error.password ==
+        'password must contain one(1) Uppercase letter, one(1) lowercase letter and one(1) number. It must be atleast 8 characters.'
+    ) {
+      return this.error;
+    } else {
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
       });
+
+      return this.http
+        .post<any>('http://127.0.0.1:8000/api/users', this.form, { headers })
+        .subscribe((data) => {
+          if (data?.message) {
+            this.reloadPage();
+          }
+        });
+    }
   }
 
   togglePasswordVisibility() {
@@ -196,5 +222,28 @@ export class AccountAttendanceCheckerComponent {
   reloadPage() {
     this.location.go(this.location.path());
     window.location.reload();
+  }
+
+  checkUsernameUnique(username: string) {
+    return this.http.get<any>(
+      `http://127.0.0.1:8000/api/users/check-username-unique/${username}`
+    );
+  }
+
+  checkEmailUnique(email: string) {
+    return this.http.get<any>(
+      `http://127.0.0.1:8000/api/users/check-email-unique/${email}`
+    );
+  }
+
+  passwordValidator() {
+    const password = this.form.password;
+    const hasUppercase = /[A-Z]/.test(password);
+    const hasLowercase = /[a-z]/.test(password);
+    const hasNumber = /\d/.test(password);
+    const hasLength = password && password.length >= 8;
+    return hasUppercase && hasLowercase && hasNumber && hasLength
+      ? true
+      : false;
   }
 }
